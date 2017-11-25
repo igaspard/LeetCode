@@ -1,7 +1,9 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
-- _2017.11.22:_ 002.Add Two Numbers
+- _2017.11.26:_ 003.Longest Substring Without Repeating Characters
+    - Learn the C++ STL, pair, map, set to solve this problem w/ sliding window bound
+- _2017.11.21:_ 002.Add Two Numbers
     - Need to consider different length input and carry on
 - _2017.11.20:_ 098.Validate Binary Search Tree
     - Two method, use min/max method has some bug. In Order Traversal will be much better.
