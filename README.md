@@ -1,6 +1,8 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2017.11.28:_ 003.Longest Substring Without Repeating Characters
+    - Learn Dynamic Programming method to solve Longest Common Subsequence and this one
 - _2017.11.26:_ 003.Longest Substring Without Repeating Characters
     - Learn the C++ STL, pair, map, set to solve this problem w/ sliding window bound
 - _2017.11.21:_ 002.Add Two Numbers
