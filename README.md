@@ -1,6 +1,8 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2017.12.01:_ 019.Remove Nth Node End of ListNode
+    - Use stack for only one pass of link list
 - _2017.11.30:_ 008.String to Integer (atoi)
     - Don't underestimate the atoi(), need to consider many cases. Here is the [definition][2de51da4].
 - _2017.11.28:_ 003.Longest Substring Without Repeating Characters
