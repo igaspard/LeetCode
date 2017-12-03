@@ -1,6 +1,8 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2017.12.04:_ 012.Integer to Roman
+    - Need to consider the subtractive notation such as 4=IV, 9=IX...etc.
 - _2017.12.01:_ 019.Remove Nth Node End of ListNode
     - Use stack for only one pass of link list
 - _2017.11.30:_ 008.String to Integer (atoi)
