@@ -1,6 +1,7 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2017.12.04:_ 021.Merge Two Sorted Lists
 - _2017.12.04:_ 012.Integer to Roman
     - Need to consider the subtractive notation such as 4=IV, 9=IX...etc.
 - _2017.12.01:_ 019.Remove Nth Node End of ListNode
