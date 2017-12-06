@@ -1,6 +1,7 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2017.12.06:_ 014.Longest Common Prefix
 - _2017.12.06:_ 007.Reverse Integer, 009.Palindrome Numbers
 - _2017.12.05:_ 023.Merge K Sorted Lists
 - _2017.12.04:_ 021.Merge Two Sorted Lists
