@@ -34,7 +34,7 @@ public:
 
 int main(int argc, char const *argv[]) {
     Solution mysolution;
-    // 2
+    
     for (size_t j = 2; j <= 9; j++) {
         for (size_t i = 1; i <= mysolution.factorial(j) ; i++) {
             cout<<mysolution.getPermutation(j, i)<<endl;
