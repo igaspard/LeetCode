@@ -1,7 +1,10 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
-- _2017.12.09:_ 035.Search Insert Position, 094.Binary Tree Inorder Traversal, 
+- _2017.12.11:_ 130.Surrounded Regions, 200.Numbers of Islands, 231.Power of Two,
+                329.Longest increasing path matrix, 504.Base7,
+                513. Find bottom left tree value, 515. find largest value in each tree
+- _2017.12.09:_ 035.Search Insert Position, 094.Binary Tree Inorder Traversal,
                 100.Same Tree, 102.Binary Tree Level Order Traversal, 104.Max Depth Binary Tree
 - _2017.12.08:_ 670.Maximum Swap
 - _2017.12.07:_ 013.Roman to Integer, 060.Permutation Sequence
