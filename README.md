@@ -1,6 +1,8 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2018.01.07:_ 760. Find Anagram Mappings
+
 - _2017.12.11:_ 130.Surrounded Regions, 200.Numbers of Islands, 231.Power of Two,
                 329.Longest increasing path matrix, 504.Base7,
                 513. Find bottom left tree value, 515. find largest value in each tree
