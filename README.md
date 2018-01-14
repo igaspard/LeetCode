@@ -1,6 +1,7 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2018.01.14:_ Join the Weekly Contest 67: 762. Prime Number of Set Bits in Binary Representation, 764. Largest Plus Sign
 - _2018.01.07:_ 760. Find Anagram Mappings
 
 - _2017.12.11:_ 130.Surrounded Regions, 200.Numbers of Islands, 231.Power of Two,
