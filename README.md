@@ -1,6 +1,7 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2019.09.11:_ 204. Count Primes
 - _2019.07.26:_ 26. Remove Duplicates from Sorted Array
 - _2019.05.15:_ 15. 3Sum
 - _2018.01.14:_ Join the Weekly Contest 67: 762. Prime Number of Set Bits in Binary Representation, 764. Largest Plus Sign
