@@ -31,3 +31,5 @@ private:
 
 // Runtime: 28 ms, faster than 93.36% of C++ online submissions for Range Sum Query - Immutable.
 // Memory Usage: 17.2 MB, less than 96.55% of C++ online submissions for Range Sum Query - Immutable.
+
+// O(n), S = O(n)

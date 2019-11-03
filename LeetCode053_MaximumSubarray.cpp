@@ -18,3 +18,5 @@ public:
 
 // Runtime: 8 ms, faster than 71.25% of C++ online submissions for Maximum Subarray.
 // Memory Usage: 9.3 MB, less than 79.41% of C++ online submissions for Maximum Subarray.
+
+// O(n), S = O(1)

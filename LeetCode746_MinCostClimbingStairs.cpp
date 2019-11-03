@@ -16,3 +16,5 @@ public:
 
 // Runtime: 8 ms, faster than 60.19% of C++ online submissions for Min Cost Climbing Stairs.
 // Memory Usage: 8.6 MB, less than 97.67% of C++ online submissions for Min Cost Climbing Stairs.
+
+// O(n), S = (1)
