@@ -1,54 +1,32 @@
 class Solution {
 public:
-    vector< vector<bool> > visited;
-
-    void bfs(int i, int j, vector< vector<char> > &grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-
-        queue< pair<int, int> > q;
-        q.push(make_pair(i, j));
-        grid[i][j] = 'V';
-
-        while (!q.empty()) {
-            pair<int, int> cur = q.front();
-            q.pop();
-            int x = cur.first, y = cur.second;
-
-            // check adj
-            if (x!=0 && grid[x-1][y] == '1') { // left
-                q.push(make_pair(x-1, y));
-                grid[x-1][y] = 'V';
-            }
-            if (x!=m-1 && grid[x+1][y] == '1') { // right
-                q.push(make_pair(x+1, y));
-                grid[x+1][y] = 'V';
-            }
-            if (y!=0 && grid[x][y-1] == '1') { // up
-                q.push(make_pair(x, y-1));
-                grid[x][y-1] = 'V';
-            }
-            if (y!=n-1 && grid[x][y+1] == '1') { // down
-                q.push(make_pair(x, y+1));
-                grid[x][y+1] = 'V';
-            }
-        }
-    }
     int numIslands(vector<vector<char>>& grid) {
-        int m = grid.size();
-        if (!m) return 0;
-        int n = grid[0].size();
+        if (!grid.size())   return 0;
 
-        int num = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1') {
-                    bfs(i, j, grid);
-                    num++;
+        int ans = 0;
+        for(int j = 0; j < grid.size(); j++) {
+            for (int i = 0; i < grid[0].size(); i++) {
+                if (grid[j][i] == '1') {
+                    ans++;
+                    dfs(grid, j, i);
                 }
             }
         }
 
-        return num;
+        return ans;
+    }
+    
+    void dfs(vector<vector<char>>& grid, int y, int x) {
+        if ( x < 0 || x >= grid[0].size() || y < 0 || y >= grid.size() || grid[y][x] != '1')
+            return;
+                
+        grid[y][x] = '*';
+        dfs(grid, y-1, x);
+        dfs(grid, y+1, x);
+        dfs(grid, y, x-1);
+        dfs(grid, y, x+1);        
     }
 };
+
+// Runtime: 16 ms, faster than 59.33% of C++ online submissions for Number of Islands.
+// Memory Usage: 10.6 MB, less than 100.00% of C++ online submissions for Number of Islands.
