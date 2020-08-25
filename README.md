@@ -1,6 +1,7 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2020.08.25:_ 96 Unique Binary Search Tree, 139 Word Break, 152 Maximum Product Subarry, 221 Maximal Square, 279 Perfect Squares `DP`
 - _2020.08.18:_ 91 Decode Ways `DP`
 - _2020.08.17:_ 322 Coin Change, 64 Minimum Path Sum `DP`
 - _2019.11.10:_ [This link](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems) show good summary of the Stocks series problem.
