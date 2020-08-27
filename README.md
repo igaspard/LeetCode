@@ -1,6 +1,7 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
+- _2020.08.28:_ 494 Target Sum, 674 Longest Continuous Increasing Subsequence `DP`
 - _2020.08.25:_ 96 Unique Binary Search Tree, 139 Word Break, 152 Maximum Product Subarry, 221 Maximal Square, 279 Perfect Squares `DP`
 - _2020.08.18:_ 91 Decode Ways `DP`
 - _2020.08.17:_ 322 Coin Change, 64 Minimum Path Sum `DP`
