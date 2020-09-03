@@ -1,8 +1,9 @@
 # LeetCode
 This repo record the process of solving the LeetCode questions.
 
-- _2020.09.01:_ 238 Product of Array Except Self `prefixsum`
-- _2020.08.31:_ 560 Sub Array Sum Equals K `prefixsum` `HashTable`
+- _2020.09.03:_ 121, 209 `Two Pointers`, 724 `PrefixSum`
+- _2020.09.01:_ 238 Product of Array Except Self `Prefix Sum`
+- _2020.08.31:_ 560 Sub Array Sum Equals K `Prefix Sum` `HashTable`
 - _2020.08.30:_ 14 Longest Common Prefix, 518 Coin Change II, 1142 Longest Common Subsqeuence `DP`
 - _2020.08.28:_ 494 Target Sum, 674 Longest Continuous Increasing Subsequence `DP`
 - _2020.08.25:_ 96 Unique Binary Search Tree, 139 Word Break, 152 Maximum Product Subarry, 221 Maximal Square, 279 Perfect Squares `DP`
