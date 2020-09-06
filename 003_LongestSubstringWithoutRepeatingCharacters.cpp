@@ -37,7 +37,7 @@ public:
         cset.insert(s[i]);
         set<char>::size_type len = cset.size();
         while (i < s.length() && j < s.length()) {
-            set<char>::iterator it = cset.find(s[j]);
+            auto it = cset.find(s[j]);
             if (it == cset.end()) {
                 cset.insert(s[j++]);
                 len = max(len, cset.size());
