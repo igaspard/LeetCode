@@ -3,6 +3,36 @@
  * struct ListNode {
  *     int val;
  *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode dummy(0);
+        ListNode *cur = &dummy;
+        while(l1 && l2) {
+            if (l1->val > l2->val) 
+                swap(l1, l2);
+            cur->next = l1;
+            l1 = l1->next;
+            cur = cur->next;
+        }
+        cur->next = l1 ? l1 : l2;
+        return dummy.next;
+    }
+};
+
+// Runtime: 12 ms, faster than 40.90% of C++ online submissions for Merge Two Sorted Lists.
+// Memory Usage: 15.1 MB, less than 5.03% of C++ online submissions for Merge Two Sorted Lists.
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
