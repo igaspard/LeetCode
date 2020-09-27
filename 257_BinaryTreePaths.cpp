@@ -13,6 +13,45 @@ class Solution {
    public:
     vector<string> binaryTreePaths(TreeNode *root) {
         vector<string> ans;
+        string path;
+
+        dfs(root, path, ans);
+        return ans;
+    }
+
+    void dfs(TreeNode *root, string path, vector<string> &ans) {
+        if (root == nullptr) return;
+
+        path.append(to_string(root->val));
+        if (root->left == nullptr && root->right == nullptr) {
+            ans.emplace_back(path);
+        } else {
+            dfs(root->left, path + "->", ans);
+            dfs(root->right, path + "->", ans);
+        }
+        path.pop_back();
+    }
+};
+
+// DFS
+// Runtime: 4 ms, faster than 86.18% of C++ online submissions for Binary Tree Paths.
+// Memory Usage: 13.6 MB, less than 77.07% of C++ online submissions for Binary Tree Paths.
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+   public:
+    vector<string> binaryTreePaths(TreeNode *root) {
+        vector<string> ans;
         if (root == nullptr) return ans;
         string path;
         dfs(root, path, ans);
