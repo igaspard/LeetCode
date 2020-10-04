@@ -1,3 +1,29 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int ans = 0, start = 0;
+        unordered_map<char, int> hash;
+        for (int end = 0; end < s.length(); ++end) {
+            char right = s[end];
+            if (hash.count(right)) {
+        // this is tricky; in the current window, we will not have any 'rightChar' after its
+        // previous index and if 'windowStart' is already ahead of the last index of 'rightChar',
+        // we'll keep 'windowStart'
+        // example "abba" wiil got wrong answer due to previous a index is ahead of start
+                start = max(start, hash[right]+1); 
+            }
+            hash[right] = end;
+            ans = max(ans, end - start + 1);
+        }
+        
+        return ans;
+    }
+};
+
+// Sliding Window & Hash Table
+// Runtime: 32 ms, faster than 66.52% of C++ online submissions for Longest Substring Without Repeating Characters.
+// Memory Usage: 8.5 MB, less than 65.29% of C++ online submissions for Longest Substring Without Repeating Characters.
+
 #include <iostream>
 #include <string>
 #include <set>
