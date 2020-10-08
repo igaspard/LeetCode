@@ -5,21 +5,18 @@ public:
         
         int min_diff = numeric_limits<int>::max();
         
-        for(int k = 0; k < nums.size() - 2; ++k) {
-            int i = k + 1, j = nums.size() - 1;
-            while(i < j) {
-                const int diff = target - nums[k] - nums[i] - nums[j];
+        for (int i = 0; i < nums.size() - 2; ++i) {
+            int left = i + 1, right = nums.size() - 1;
+            while (left < right) {
+                const int diff = target - nums[i] - nums[left] - nums[right];
+                if (!diff) return target;
                 
-                if (!diff)
-                    return target;
-                
-                if (abs(diff) < abs(min_diff))
-                    min_diff = diff;
+                if (abs(diff) < abs(min_diff)) min_diff = diff;
                 
                 if (diff > 0)
-                    ++i;
+                    left++;
                 else
-                    --j;
+                    right--;
             }
         }
         
@@ -31,5 +28,5 @@ public:
 // Two Pointers follow up by 3Sum
 // Time complexity: O(N^2)
 // Space complexity: O(N)
-// Runtime: 28 ms, faster than 24.92% of C++ online submissions for 3Sum Closest.
-// Memory Usage: 10 MB, less than 23.54% of C++ online submissions for 3Sum Closest.
+// Runtime: 12 ms, faster than 91.02% of C++ online submissions for 3Sum Closest.
+// Memory Usage: 10.2 MB, less than 6.17% of C++ online submissions for 3Sum Closest.
