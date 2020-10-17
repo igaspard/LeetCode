@@ -16,7 +16,7 @@ class Solution {
     }
 };
 
-// Heap
+// Heap, find largest use minHeap
 // Time complexity: O(nlogk)
 // Space complexity: O(k)
 // Runtime: 16 ms, faster than 90.17% of C++ online submissions for Kth Largest Element in an Array.
