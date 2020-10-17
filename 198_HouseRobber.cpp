@@ -1,22 +1,21 @@
 class Solution {
-public:
+   public:
     int rob(vector<int>& nums) {
-        if (nums.empty())
-            return 0;
-                
-        int pre = 0;
-        int cur = 0;
-        
-        for(int i = 0; i < nums.size(); i++) {
-            int money = max(cur, pre+nums[i]);
+        int pre = 0, cur = 0;
+
+        for (auto num : nums) {
+            int tmp = max(cur, pre + num);
             pre = cur;
-            cur = money;
+            cur = tmp;
         }
+
         return cur;
     }
 };
 
-// Runtime: 4 ms, faster than 56.62% of C++ online submissions for House Robber.
-// Memory Usage: 8.5 MB, less than 100.00% of C++ online submissions for House Robber.
+// DP dp[i] = max(dp[i-1], dp[i-2]+M(i)), dp(-1) = dp(0) = 0
+// Time Complexity:O(n)
+// Space Complexity = O(1)
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for House Robber.
+// Memory Usage: 8 MB, less than 100.00% of C++ online submissions for House Robber.
 
-// O(n), S = O(1)
