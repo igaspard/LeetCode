@@ -17,7 +17,7 @@ public:
     }
 };
 
-// DP
+// DP use two DP to record max and min
 // Time complexity: O(N)
 // Space complexity: O(1)
 // Runtime: 4 ms, faster than 98.55% of C++ online submissions for Maximum Product Subarray.

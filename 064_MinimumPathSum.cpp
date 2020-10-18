@@ -1,27 +1,27 @@
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
-        int m = grid.size();
-        if (m == 0) return 0;
-        int n = grid[0].size();
-        int ans[m][n];
+        const int M = grid.size();
+        if (!M) return 0;
+        const int N = grid[0].size();
+        int dp[M][N];
         
-        for (int y = 0; y < m; ++y) {
-            for (int x = 0; x < n; ++x) {
-                if (!y && !x) 
-                    ans[y][x] = grid[y][x];
-                else if (!y) 
-                    ans[y][x] = grid[y][x] + ans[y][x - 1];
-                else if (!x)
-                    ans[y][x] = grid[y][x] + ans[y - 1][x];
-                else
-                    ans[y][x] = grid[y][x] + min(ans[y][x - 1], ans[y - 1][x]);
+        for (int j = 0; j < M; ++j) {
+            for (int i = 0; i < N; ++i) {
+                if (!j && !i) dp[j][i] = grid[j][i];
+                else if (!j) dp[j][i] = dp[j][i-1] + grid[j][i];
+                else if (!i) dp[j][i] = dp[j-1][i] + grid[j][i];
+                else dp[j][i] = min(dp[j][i-1], dp[j-1][i]) + grid[j][i];
             }
         }
         
-        return ans[m - 1][n - 1];
+        return dp[M-1][N-1];
     }
 };
 
-// Runtime: 16 ms, faster than 95.82% of C++ online submissions for Minimum Path Sum.
-// Memory Usage: 10.1 MB, less than 43.42% of C++ online submissions for Minimum Path Sum.
+
+// DP 2D Counting
+// Time complexity: O(mn)
+// Time complexity: O(mn)
+// Runtime: 8 ms, faster than 99.99% of C++ online submissions for Minimum Path Sum.
+// Memory Usage: 10 MB, less than 8.97% of C++ online submissions for Minimum Path Sum.

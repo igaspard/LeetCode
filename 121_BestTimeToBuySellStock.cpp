@@ -1,17 +1,14 @@
 class Solution {
-public:
+   public:
     int maxProfit(vector<int>& prices) {
-        if(prices.empty()) return 0;
-        
+        if (prices.empty()) return 0;
+
+        int low = prices[0];
         int ans = 0;
-        int min_prices = prices[0];
-        for(int i = 1; i< prices.size(); ++i) {
-            if (prices[i] > min_prices) {
-                ans = max(ans, prices[i] - min_prices);
-            }
-            min_prices = min(min_prices, prices[i]);
+        for (int i = 1; i < prices.size(); ++i) {
+            low = min(low, prices[i]);
+            ans = max(ans, prices[i] - low);
         }
-        
         return ans;
     }
 };
@@ -20,10 +17,9 @@ public:
 // Memory Usage: 13 MB, less than 88.12% of C++ online submissions for Best Time to Buy and Sell Stock.
 
 class Solution {
-public:
+   public:
     int maxProfit(vector<int>& prices) {
-        if (prices.empty())
-            return 0;
+        if (prices.empty()) return 0;
 
         int low = prices[0];
         int ans = 0;
