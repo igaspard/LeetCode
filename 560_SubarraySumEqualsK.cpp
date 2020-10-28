@@ -1,16 +1,16 @@
 class Solution {
-public:
+   public:
     int subarraySum(vector<int>& nums, int k) {
         if (nums.empty()) return 0;
         unordered_map<int, int> count = {{0, 1}};
         int cur_sum = 0;
         int ans = 0;
-        for(auto num: nums) {
+        for (auto num : nums) {
             cur_sum += num;
             ans += count[cur_sum - k];
             ++count[cur_sum];
         }
-        
+
         return ans;
     }
 };
@@ -27,19 +27,19 @@ public:
 // Memory Usage: 26.8 MB, less than 18.34% of C++ online submissions for Subarray Sum Equals K.
 
 class Solution {
-public:
+   public:
     int subarraySum(vector<int>& nums, int k) {
         const int N = nums.size();
-        
+
         int ans = 0;
-        for(int i = 0; i < N; ++i) {
+        for (int i = 0; i < N; ++i) {
             int prefixSum = 0;
-            for(int j = i; j < N; ++j) {
+            for (int j = i; j < N; ++j) {
                 prefixSum += nums[j];
-                if(prefixSum == k) ans++;
+                if (prefixSum == k) ans++;
             }
         }
-            
+
         return ans;
     }
 };
@@ -50,19 +50,19 @@ public:
 // Memory Usage: 16.3 MB, less than 96.62% of C++ online submissions for Subarray Sum Equals K.
 
 class Solution {
-public:
+   public:
     int subarraySum(vector<int>& nums, int k) {
         const int N = nums.size();
-        vector<int> prefixSum(N+1, 0);
-        
-        for(int i = 1; i <= N; ++i)
-            prefixSum[i] = prefixSum[i-1] + nums[i-1];
-        
+        vector<int> prefixSum(N + 1, 0);
+
+        for (int i = 1; i <= N; ++i) 
+            prefixSum[i] = prefixSum[i - 1] + nums[i - 1];
+
         int ans = 0;
-        for(int i = 0; i < N; ++i)
-            for(int j = i; j < N; ++j)
-                if(prefixSum[j+1]-prefixSum[i] == k) ans++;
-        
+        for (int i = 0; i < N; ++i)
+            for (int j = i; j < N; ++j)
+                if (prefixSum[j + 1] - prefixSum[i] == k) ans++;
+
         return ans;
     }
 };
