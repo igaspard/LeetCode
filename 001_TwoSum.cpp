@@ -1,14 +1,14 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> map{make_pair(nums[0], 0)}; 
+        unordered_map<int, int> map = {{nums[0], 0}}; 
         for (int i = 1; i < nums.size(); i++) {
             auto it = map.find(target - nums[i]);
             if(it != map.end()) {                
                 return {it->second, i};
             }
             else
-                map.insert(make_pair(nums[i], i));
+                map[nums[i]] = i;
         }
         return {};
     }
