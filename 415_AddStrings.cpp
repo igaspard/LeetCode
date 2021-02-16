@@ -17,8 +17,7 @@ public:
             --p2;
         }
         
-        if (carry)
-            ans.append(to_string(carry));
+        if (carry) ans.append(to_string(carry));
         
         reverse(ans.begin(), ans.end());
         return ans;

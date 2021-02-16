@@ -1,71 +1,26 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        int c = 0;
-        ListNode *prev = NULL, *head = NULL;
-        while(l1 && l2) {
-            int sum = l1->val + l2->val + c;
-            if(sum >= 10) {
-                c = 1;
-                sum %= 10;
-            }
-            else
-                c = 0;
-            ListNode *out = new ListNode(sum);
-            if(prev)
-                prev->next = out;
-            else
-                head = out;
-            prev = out;
-            l1 = l1->next;
-            l2 = l2->next;
+        ListNode *dummy = new ListNode();
+        ListNode *cur = dummy;
+        ListNode *p1 = l1, *p2 = l2;
+        int carry = 0;
+        while (p1 != nullptr || p2 != nullptr) {
+            int n1 = (p1 != nullptr) ? p1->val : 0;
+            int n2 = (p2 != nullptr) ? p2->val : 0;
+            int sum = (n1 + n2 + carry) % 10;
+            carry = (n1 + n2 + carry) / 10;
+
+            cur->next = new ListNode(sum);
+            cur = cur->next;
+            if (p1 != nullptr) p1 = p1->next;
+            if (p2 != nullptr) p2 = p2->next;
         }
-        while(l1) {
-            int sum = l1->val + c;
-            if(sum >= 10) {
-                c = 1;
-                sum %= 10;
-            }
-            else
-                c = 0;
-            ListNode *out = new ListNode(sum);
-            if(prev)
-                prev->next = out;
-            prev = out;
-            l1 = l1->next;
+
+        if (carry != 0) {
+            cur->next = new ListNode(carry);
         }
-        while(l2) {
-            int sum = l2->val + c;
-            if(sum >= 10) {
-                c = 1;
-                sum %= 10;
-            }
-            else
-                c = 0;
-            ListNode *out = new ListNode(sum);
-            if(prev)
-                prev->next = out;
-            prev = out;
-            l2 = l2->next;
-        }
-        if(c) {
-            ListNode *out = new ListNode(c);
-            prev->next = out;
-        }
-        return head;
+
+        return dummy->next;
     }
 };
-
-// Test cases
-// [5], [5]     -> [0, 1]
-// [1], [9, 9]  -> [0, 0, 1]
-// [0], [1, 8]  -> [1, 8]
-// [1], [9]     -> [0, 1]

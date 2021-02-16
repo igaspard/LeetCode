@@ -18,7 +18,7 @@ public:
     }
 };
 
-// Two Pointers
+// Slide Window
 // Time Complexity: O(N)
 // Space Complexity: O(1)
 // Runtime: 16 ms, faster than 85.50% of C++ online submissions for Minimum Size Subarray Sum.

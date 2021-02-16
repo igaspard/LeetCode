@@ -36,3 +36,17 @@ class Solution {
 // BFS
 // Runtime: 16 ms, faster than 68.47% of C++ online submissions for Minimum Depth of Binary Tree.
 // Memory Usage: 19.9 MB, less than 83.71% of C++ online submissions for Minimum Depth of Binary Tree.
+
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if (root == nullptr) return 0;
+        if (root->left == nullptr) return 1 + minDepth(root->right);
+        if (root->right == nullptr) return 1 + minDepth(root->left);
+        return 1 + min(minDepth(root->left), minDepth(root->right));
+    }
+};
+
+// DFS
+// Your runtime beats 87.86 % of cpp submissions
+// Your memory usage beats 48.97 % of cpp submissions (144.9 MB)

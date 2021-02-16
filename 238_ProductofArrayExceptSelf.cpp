@@ -4,15 +4,13 @@ public:
         const int N = nums.size();
         vector<int> ans(N, 1);
         
-        int i = 1;
-        for(; i < N; ++i)
+        for(int i = 1; i < N; ++i)
             ans[i] = ans[i-1] * nums[i-1];
         
-        int R = 1;
-        i = N - 1;
-        for(; i >= 0; --i) {
-            ans[i] *= R;
-            R *= nums[i];
+        int prefixProduct = 1;
+        for(int i = N - 1;; i >= 0; --i) {
+            ans[i] *= prefixProduct;
+            prefixProduct *= nums[i];
         }
         
         return ans;

@@ -54,5 +54,6 @@ public:
     }
 };
 
-Runtime: 56 ms, faster than 48.64% of C++ online submissions for Find Pivot Index.
-Memory Usage: 32.1 MB, less than 10.89% of C++ online submissions for Find Pivot Index.
+// Time Complexity: O(N), Space Compplexity: O(N)
+// Runtime: 56 ms, faster than 48.64% of C++ online submissions for Find Pivot Index.
+// Memory Usage: 32.1 MB, less than 10.89% of C++ online submissions for Find Pivot Index.
