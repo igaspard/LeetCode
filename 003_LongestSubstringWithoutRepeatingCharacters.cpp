@@ -20,9 +20,10 @@ public:
     }
 };
 
-// Sliding Window & Hash Table
+// Sliding Window & Hash Table: mapping of the characters to its index
 // Runtime: 32 ms, faster than 66.52% of C++ online submissions for Longest Substring Without Repeating Characters.
 // Memory Usage: 8.5 MB, less than 65.29% of C++ online submissions for Longest Substring Without Repeating Characters.
+// Time complexity: O(N), Space complexity: O()
 
 #include <iostream>
 #include <string>
