@@ -18,5 +18,5 @@ public:
 };
 
 
-Runtime: 4 ms, faster than 71.85% of C++ online submissions for Subsets.
-Memory Usage: 7 MB, less than 91.57% of C++ online submissions for Subsets.
+// Runtime: 4 ms, faster than 71.85% of C++ online submissions for Subsets.
+// Memory Usage: 7 MB, less than 91.57% of C++ online submissions for Subsets.

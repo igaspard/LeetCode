@@ -2,6 +2,36 @@ class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
+        vector<int> track;
+        backtrack(ans, nums, track);
+        return ans;
+    }
+
+    static void backtrack(vector<vector<int>> &ans, const vector<int> &nums, vector<int> &track) {
+        if (nums.size() == track.size()) {
+            ans.emplace_back(track);
+            return;
+        }
+
+        for (int i = 0; i < nums.size(); ++i) {
+            if (find(track.begin(), track.end(), nums[i]) != track.end()) 
+                continue;
+            
+            track.emplace_back(nums[i]);
+            backtrack(ans, nums, track);
+            track.pop_back();
+        }
+
+    }
+};
+
+// Your runtime beats 100 % of cpp submissions
+// Your memory usage beats 49.54 % of cpp submissions (7.7 MB)
+
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
         queue<vector<int>> tmp;
         tmp.push(vector<int>());
         
