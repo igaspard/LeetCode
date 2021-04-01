@@ -1,3 +1,35 @@
+/*
+ * @lc app=leetcode id=3 lang=cpp
+ *
+ * [3] Longest Substring Without Repeating Characters
+ */
+
+// @lc code=start
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int left = 0, right = 0;
+
+        unordered_map<char ,int > hash;
+        int ans = 0;
+        while (right < s.length()) {
+            char c = s[right++];
+
+            hash[c]++;
+            while (hash[c] > 1) {
+                char d = s[left++];
+                hash[d]--;
+            }
+            ans = max(ans, right - left);
+        }
+
+        return ans;
+    }
+};
+// @lc code=end
+
+
+
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
