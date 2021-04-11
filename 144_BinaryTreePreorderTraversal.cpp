@@ -1,3 +1,22 @@
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        preOrder(ans, root);
+        return ans;
+    }
+
+    void preOrder(vector<int> &ans, TreeNode *root) {
+        if (root == nullptr) return;
+
+        ans.emplace_back(root->val);
+        preOrder(ans, root->left);
+        preOrder(ans, root->right);
+    }
+};
+
+// Recursive Solution
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {

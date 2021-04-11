@@ -1,3 +1,22 @@
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        inOrder(ans, root);
+        return ans;
+    }
+
+    void inOrder(vector<int> &ans, TreeNode *root) {
+        if (root == nullptr) return;
+
+        inOrder(ans, root->left);
+        ans.emplace_back(root->val);
+        inOrder(ans, root->right);
+    }
+};
+
+// Recursive Solution
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
