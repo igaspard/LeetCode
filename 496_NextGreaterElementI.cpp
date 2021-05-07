@@ -28,6 +28,8 @@ public:
 };
 // @lc code=end
 
-// Stack + Hash Table
+// Monotonic Stack + Hash Table
+// Time complexity: O(m+n), scan each vector once
+// Space complexity: O(m+n), stack & hash used n spaces, out used m spaces
 // Runtime: 4 ms, faster than 93.90% of C++ online submissions for Next Greater Element I.
 // Memory Usage: 9 MB, less than 28.58% of C++ online submissions for Next Greater Element I.

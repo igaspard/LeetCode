@@ -17,7 +17,7 @@ public:
     }
 };
 
-// Monotonic Stack
+// Monotonic Stack, only use idx in the stack
 // Runtime: 48 ms, faster than 94.87% of C++ online submissions for Daily Temperatures.
 // Memory Usage: 40 MB, less than 68.00% of C++ online submissions for Daily Temperatures.
 
@@ -40,5 +40,6 @@ public:
     }
 };
 
+// Monotonic Stack, use pair of temperatures and idx in stack
 // Runtime: 68 ms, faster than 23.58% of C++ online submissions for Daily Temperatures.
 // Memory Usage: 40 MB, less than 68.00% of C++ online submissions for Daily Temperatures.
