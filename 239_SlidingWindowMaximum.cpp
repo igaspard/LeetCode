@@ -19,24 +19,26 @@ class Solution {
    public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         MonotonicQueue q;
-
         vector<int> ans;
         for (int i = 0; i < nums.size(); ++i) {
-            if (i < k) {
+            if (i < k - 1) {
                 q.push(nums[i]);
             } else {
-                ans.emplace_back(q.max());
-                q.pop(nums[i - k]);
                 q.push(nums[i]);
+                ans.emplace_back(q.max());
+                q.pop(nums[i - k + 1]);
             }
         }
-        ans.emplace_back(q.max());
+
         return ans;
     }
 };
 
-// Monotonic Queue 
-// Time complexity: O(1)
+// Monotonic Queue
+// Time complexity: O(N)
+// Space complexity: O(K)
+// Runtime: 244 ms, faster than 64.08% of C++ online submissions for Sliding Window Maximum.
+// Memory Usage: 131.9 MB, less than 50.65% of C++ online submissions for Sliding Window Maximum.
 
 class Solution {
    public:

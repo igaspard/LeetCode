@@ -1,5 +1,29 @@
 class Solution {
 public:
+    vector<vector<int>> ans;
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int> set;
+        backtrack(nums, 0, set);
+        return ans;
+    }
+
+    void backtrack(const vector<int>& nums, int start, vector<int>& set) {
+        ans.emplace_back(set);
+        for (int i = start; i < nums.size(); ++i) {
+            set.emplace_back(nums[i]);
+            backtrack(nums, i+1, set);
+            set.pop_back();
+        }
+    }
+};
+
+// backtrack
+// Time complexity: O(N×2^N)
+// Space complexity: O(N)
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Subsets.
+// Memory Usage: 7.2 MB, less than 57.72% of C++ online submissions for Subsets.
+class Solution {
+public:
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
         
