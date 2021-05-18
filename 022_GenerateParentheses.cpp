@@ -1,3 +1,33 @@
+class Solution {
+   public:
+    vector<string> ans;
+    vector<string> generateParenthesis(int n) {
+        string track;
+        backtrack(n, n, track);
+        return ans;
+    }
+
+    void backtrack(int left, int right, string &track) {
+        if (left < 0 || right < 0) return;
+
+        if (left > right) return;
+
+        if (left == 0 && right == 0) {
+            ans.emplace_back(track);
+            return;
+        }
+
+        track.push_back('(');
+        backtrack(left - 1, right, track);
+        track.pop_back();
+
+        track.push_back(')');
+        backtrack(left, right - 1, track);
+        track.pop_back();
+    }
+};
+// backtrack
+
 class ParenthesesString {
    public:
     string str;
@@ -36,8 +66,8 @@ class Solution {
 };
 
 // BFS
-Runtime: 4 ms, faster than 86.42% of C++ online submissions for Generate Parentheses.
-Memory Usage: 8.3 MB, less than 5.14% of C++ online submissions for Generate Parentheses.
+// Runtime: 4 ms, faster than 86.42% of C++ online submissions for Generate Parentheses.
+// Memory Usage: 8.3 MB, less than 5.14% of C++ online submissions for Generate Parentheses.
 
 class Solution {
    public:

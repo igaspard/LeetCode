@@ -11,35 +11,30 @@
 class Solution {
    public:
     bool isPalindrome(ListNode *head) {
-        if (head == nullptr) return true;
         ListNode *slow = head, *fast = head;
-        while (fast != nullptr && fast->next != nullptr) {
+        while (fast->next != nullptr && fast->next->next != nullptr) {
             slow = slow->next;
             fast = fast->next->next;
         }
+        // when the list is odd, need to move slow one step
+        if (fast != nullptr) slow = slow->next;
 
-        ListNode *second_half = Reverse(slow);
-        ListNode *backup = second_half;
-        ListNode *first_half = head;
-
-        while (second_half != nullptr && first_half != nullptr) {
-            if (first_half->val != second_half->val) break;
-            first_half = first_half->next;
-            second_half = second_half->next;
+        ListNode *left = head;
+        ListNode *right = reverse(slow);
+        while (right != nullptr) {
+            if (left->val != right->val) return false;
+            left = left->next;
+            right = right->next;
         }
 
-        Reverse(backup);
-        if (first_half == nullptr || second_half == nullptr)
-            return true;
-        else
-            return false;
+        return true;
     }
 
-    ListNode *Reverse(ListNode *head) {
-        ListNode *cur = head, *pre = nullptr, *next = nullptr;
+    ListNode *reverse(ListNode *head) {
+        ListNode *pre = nullptr, *cur = head;
 
         while (cur != nullptr) {
-            next = cur->next;
+            ListNode *next = cur->next;
             cur->next = pre;
             pre = cur;
             cur = next;
@@ -49,53 +44,8 @@ class Solution {
     }
 };
 
-// Fast & slow algorithms, slow as mid and then reverse second half and compare with first one
+// fast & slow pointers, use it to find mid point and reverse right half of linked list, then compare first half with second
 // Time complexity: O(N)
-// Space complexity: O(1)
-// Runtime: 24 ms, faster than 92.43% of C++ online submissions for Palindrome Linked List.
-// Memory Usage: 14.5 MB, less than 12.30% of C++ online submissions for Palindrome Linked List.
-
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-class Solution {
-   public:
-    bool isPalindrome(ListNode *head) {
-        if (head == nullptr) return true;
-        ListNode *slow = head, *fast = head;
-        stack<ListNode *> s;
-        while (fast != nullptr && fast->next != nullptr) {
-            s.push(slow);
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-
-        if (fast == nullptr) {
-            ListNode *mid = s.top();
-            s.pop();
-            if (slow->val != mid->val) return false;
-        }
-
-        while (slow->next != nullptr) {
-            ListNode *tmp = s.top();
-            s.pop();
-            slow = slow->next;
-            if (slow->val != tmp->val) return false;
-        }
-
-        return true;
-    }
-};
-
-// Fast & slow algorithms
-// Time complexity: O(N)
-// Space complexity: O(N)
-// Runtime: 24 ms, faster than 92.43% of C++ online submissions for Palindrome Linked List.
-// Memory Usage: 14.7 MB, less than 12.30% of C++ online submissions for Palindrome Linked List.
+// Slow complexity: O(1)
+// Runtime: 188 ms, faster than 74.31% of C++ online submissions for Palindrome Linked List.
+// Memory Usage: 114.1 MB, less than 76.12% of C++ online submissions for Palindrome Linked List.

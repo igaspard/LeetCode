@@ -1,28 +1,28 @@
 class Solution {
-   public:
+public:
     vector<vector<string>> ans;
-    vector<vector<string>> solveNQueens(int n) {
+    int totalNQueens(int n) {
         vector<string> board(n, string(n, '.'));
-        backtrace(board, 0);
-        return ans;
+        backtrack(board, 0);
+        return ans.size();
     }
 
-    void backtrace(vector<string> &board, int row) {
-        if (row == board.size()) {
+    void backtrack(vector<string> &board, int row) {
+        if (board.size() == row) {
             ans.emplace_back(board);
             return;
         }
-
+        
         for (int col = 0; col < board[row].size(); ++col) {
-            if (!isValid(board, row, col)) continue;
-
+            if (isValid(board, row, col) == false) continue;
+            
             board[row][col] = 'Q';
-            backtrace(board, row + 1);
+            backtrack(board, row + 1);
             board[row][col] = '.';
         }
     }
-
-    bool isValid(const vector<string> &board, int row, int col) {
+    
+    bool isValid(vector<string> &board, int row, int col) {
         // check up
         for (int j = 0; j < row; ++j)
             if (board[j][col] == 'Q') return false;
@@ -32,10 +32,8 @@ class Solution {
         // check right up
         for (int j = row - 1, i = col + 1; j >= 0 && i < board.size(); --j, ++i)
             if (board[j][i] == 'Q') return false;
-
+        
         return true;
     }
 };
-// backtrace
-// Your runtime beats 94.53 % of cpp submissions
-// Your memory usage beats 89.61 % of cpp submissions (7.2 MB)
+
