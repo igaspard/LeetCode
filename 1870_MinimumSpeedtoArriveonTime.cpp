@@ -27,3 +27,5 @@ class Solution {
    private:
     int N;
 };
+
+// binary search
