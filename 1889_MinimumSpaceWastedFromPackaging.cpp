@@ -5,7 +5,7 @@ public:
 
         long ans = numeric_limits<long>::max(), sum = 0;
         const long MOD = 1e9 + 7;
-        for (int p : packages) sum += p;
+        sum = accumulate(packages.begin(), packages.end(), sum);
 
         for (auto& box : boxes) {
             sort(box.begin(), box.end());
