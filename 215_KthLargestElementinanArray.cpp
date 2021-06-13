@@ -1,6 +1,16 @@
 class Solution {
    public:
     int findKthLargest(vector<int>& nums, int k) {
+        nth_element(nums.begin(), nums.begin() + k - 1, nums.end(), greater<int>());
+        return nums[k - 1];
+    }
+};
+
+// Runtime: 4 ms, faster than 98.13% of C++ online submissions for Kth Largest Element in an Array.
+// Memory Usage: 10 MB, less than 82.78% of C++ online submissions for Kth Largest Element in an Array.
+class Solution {
+   public:
+    int findKthLargest(vector<int>& nums, int k) {
         // find k largest equal to N - K + 1 smallest
         return quick_select(nums, nums.size() - k + 1, 0, nums.size() - 1);
     }
