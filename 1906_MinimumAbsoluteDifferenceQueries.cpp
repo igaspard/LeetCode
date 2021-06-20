@@ -23,10 +23,7 @@ class Solution {
                 if (prev != -1 && i - prev < diff) diff = i - prev;
                 prev = i;
             }
-            if (diff == INT_MAX)
-                ans.emplace_back(-1);
-            else
-                ans.emplace_back(diff);
+            ans.emplace_back(diff == INT_MAX ? -1 : diff);
         }
 
         return ans;
