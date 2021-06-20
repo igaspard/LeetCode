@@ -1,11 +1,4 @@
 /*
- * @lc app=leetcode id=429 lang=cpp
- *
- * [429] N-ary Tree Level Order Traversal
- */
-
-// @lc code=start
-/*
 // Definition for a Node.
 class Node {
 public:
@@ -30,28 +23,30 @@ public:
     vector<vector<int>> levelOrder(Node* root) {
         vector<vector<int>> ans;
         if (root == nullptr) return ans;
-
+        
         queue<Node*> q;
         q.push(root);
-
+        ans.push_back({root->val});
+        
         while (!q.empty()) {
             int size = q.size();
-
-            vector<int> level;
+            
+            vector<int> levels;
             for (int i = 0; i < size; ++i) {
                 auto cur = q.front();
                 q.pop();
-
-                level.emplace_back(cur->val);
-
-                for (auto child : cur->children)
-                    if (child != nullptr) q.push(child);
+                for (auto child : cur->children) {
+                    levels.emplace_back(child->val);
+                    q.push(child);
+                }    
             }
-            ans.emplace_back(level);
+            
+            if (!levels.empty()) ans.emplace_back(levels);
         }
-
+        
         return ans;
     }
 };
-// @lc code=end
 
+// Runtime: 24 ms, faster than 52.64% of C++ online submissions for N-ary Tree Level Order Traversal.
+// Memory Usage: 11.8 MB, less than 59.45% of C++ online submissions for N-ary Tree Level Order Traversal.
