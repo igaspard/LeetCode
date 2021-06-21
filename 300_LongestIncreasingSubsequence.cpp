@@ -1,22 +1,51 @@
 class Solution {
-public:
+   public:
     int lengthOfLIS(vector<int>& nums) {
-        if(nums.empty())
-            return 0;
-        
-        const int n = nums.size();
-        auto f = vector<int>(n, 1);
-        
-        for (int i = 1; i < n; i++)
-            for (int j = 0; j < i; j++)
-                if (nums[i] > nums[j])
-                    f[i] = max(f[i], f[j]+1);
+        const int N = nums.size();
+        vector<int> top(N, 0);
+
+        int ans = 0;
+        for (int i = 0; i < N; ++i) {
+            int poker = nums[i];
+
+            auto it = lower_bound(top.begin(), top.begin() + ans, poker);
+            // if not found, create a new piles
+            if (it == top.begin() + ans) ++ans;
             
-        return *max_element(f.begin(), f.end());            
+            *it = poker;
+        }
+
+        return ans;
     }
 };
 
-// Runtime: 48 ms, faster than 15.48% of C++ online submissions for Longest Increasing Subsequence.
-// Memory Usage: 8.6 MB, less than 90.63% of C++ online submissions for Longest Increasing Subsequence.
+// Use Solitaire to find the solution
+// binary search
+// time complexity: O(NlogN)
+// Runtime: 4 ms, faster than 99.12% of C++ online submissions for Longest Increasing Subsequence.
+// Memory Usage: 10.6 MB, less than 13.68% of C++ online submissions for Longest Increasing Subsequence.
 
-// O(n^2), S = (n)
+class Solution {
+   public:
+    int lengthOfLIS(vector<int>& nums) {
+        const int N = nums.size();
+        // dp[i] define as the LIS end with nums[i], base cases dp[0] = 1 &
+        vector<int> dp(N, 1);
+
+        // state transfer
+        for (int i = 1; i < N; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (nums[j] < nums[i]) dp[i] = max(dp[i], dp[j] + 1);
+            }
+        }
+
+        // return max in the dp[i]
+        return *max_element(dp.begin(), dp.end());
+    }
+};
+
+// dp
+// time complexity: O(N^2)
+// space complexity: O(N)
+// Runtime: 272 ms, faster than 31.97% of C++ online submissions for Longest Increasing Subsequence.
+// Memory Usage: 10.5 MB, less than 61.26% of C++ online submissions for Longest Increasing Subsequence.

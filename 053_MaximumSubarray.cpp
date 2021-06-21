@@ -1,19 +1,40 @@
 class Solution {
-public:
+   public:
     int maxSubArray(vector<int>& nums) {
-        int preSum = nums[0];
-        int ans = preSum;
-        for (int i = 1; i < nums.size(); ++i) {
-            int curSum = preSum < 0 ? nums[i] : preSum + nums[i];
-            preSum = curSum;
-            ans = max(ans, preSum);
+        const int N = nums.size();
+        int pre = nums[0], ans = nums[0];
+
+        for (int i = 1; i < N; ++i) {
+            int cur = max(nums[i], pre + nums[i]);
+            ans = max(ans, cur);
+            pre = cur;
         }
-        
+
         return ans;
     }
 };
 
-// DP, dp[i] = dp[i-1] < 0 ? nums[i] : dp[i-1] + nums[i]
-// O(n), S = O(1)
-// Runtime: 8 ms, faster than 71.25% of C++ online submissions for Maximum Subarray.
-// Memory Usage: 9.3 MB, less than 79.41% of C++ online submissions for Maximum Subarray.
+// DP w/ compression
+// Time complexity: O(N)
+// space complexity: O(1)
+// Runtime: 8 ms, faster than 52.74% of C++ online submissions for Maximum Subarray.
+// Memory Usage: 13.5 MB, less than 5.72% of C++ online submissions for Maximum Subarray.
+class Solution {
+   public:
+    int maxSubArray(vector<int>& nums) {
+        const int N = nums.size();
+        vector<int> dp(N);
+        dp[0] = nums[0];
+
+        for (int i = 1; i < N; ++i) dp[i] = max(nums[i], dp[i - 1] + nums[i]);
+
+        return *max_element(dp.begin(), dp.end());
+    }
+};
+
+// DP, when handle the subsqeuence or sub array define dp[i] as the max sub array include nums[i]
+// choose previous plus itself or it self since we need contiguous subarray 
+// Time complexity: O(N)
+// space complexity: O(N)
+// Runtime: 8 ms, faster than 52.74% of C++ online submissions for Maximum Subarray.
+// Memory Usage: 13.5 MB, less than 5.72% of C++ online submissions for Maximum Subarray.
