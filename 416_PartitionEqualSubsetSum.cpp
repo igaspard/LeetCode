@@ -150,7 +150,7 @@ class Solution {
         if (memo[idx][target] != -1) return memo[idx][target] == 1 ? true : false;
 
         bool ans = dp(memo, nums, idx + 1, target) ||            // not choose nums[idx]
-                   dp(memo, nums, idx + 1, target - nums[idx]);  // not choose nums[idx]
+                   dp(memo, nums, idx + 1, target - nums[idx]);  // choose nums[idx]
 
         memo[idx][target] = ans ? 1 : 0;
 
