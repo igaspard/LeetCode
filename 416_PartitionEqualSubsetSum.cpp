@@ -1,23 +1,23 @@
 class Solution {
-public:
-    bool canPartition(vector<int>& nums) {
+   public:
+    bool canPartition(vector<int> &nums) {
         int sum = 0;
         for (auto n : nums) sum += n;
         if (sum % 2 != 0) return false;
 
         const int N = nums.size();
-        const int T = sum / 2;
+        const int W = sum / 2;
 
-        bool dp[T+1];
+        bool dp[W + 1];
         // base cases
         dp[0] = true;
-        for (int i = 1; i < T + 1; ++i) dp[i] = false;
+        for (int i = 1; i < W + 1; ++i) dp[i] = false;
 
         for (int i = 0; i < N; ++i)
-          for (int j = T; j >= 0; --j)
-            if (nums[i] <= j) dp[j] = dp[j] || dp[j - nums[i]];
+            for (int j = W; j >= 0; --j)
+                if (nums[i] <= j) dp[j] = dp[j] || dp[j - nums[i]];
 
-        return dp[T];
+        return dp[W];
     }
 };
 
@@ -30,16 +30,16 @@ class Solution {
         if (sum % 2 != 0) return false;
 
         const int N = nums.size();
-        const int T = sum / 2;
-        bool dp[T + 1];
+        const int W = sum / 2;
+        bool dp[W + 1];
         // if (target < 0 || idx == nums.size()) return false;
-        for (int j = 1; j < T + 1; ++j) dp[j] = false;
+        for (int j = 1; j < W + 1; ++j) dp[j] = false;
 
         // if (target == 0) return true;
         dp[0] = true;
 
         for (int i = N - 1; i >= 0; --i) {
-            for (int j = T; j >= 0; --j) {
+            for (int j = W; j >= 0; --j) {
                 if (j < nums[i])
                     continue;
                 else
@@ -47,7 +47,7 @@ class Solution {
             }
         }
 
-        return dp[T];
+        return dp[W];
     }
 };
 
@@ -64,17 +64,17 @@ class Solution {
         if (sum % 2 != 0) return false;
 
         const int N = nums.size();
-        const int T = sum / 2;
-        bool dp[2][T + 1];
+        const int W = sum / 2;
+        bool dp[2][W + 1];
         // if (target < 0 || idx == nums.size()) return false;
         for (int i = 0; i < 2; ++i)
-            for (int j = 0; j < T + 1; ++j) dp[i][j] = false;
+            for (int j = 0; j < W + 1; ++j) dp[i][j] = false;
 
         // if (target == 0) return true;
         for (int i = 0; i < 2; ++i) dp[i][0] = true;
 
         for (int i = N - 1; i >= 0; --i) {
-            for (int j = 1; j < T + 1; ++j) {
+            for (int j = 1; j < W + 1; ++j) {
                 if (j >= nums[i]) {  // whether to choose nums[i] or not
                     dp[i % 2][j] = dp[(i + 1) % 2][j] || dp[(i + 1) % 2][j - nums[i]];
                 } else {
@@ -83,7 +83,7 @@ class Solution {
             }
         }
 
-        return dp[0][T];
+        return dp[0][W];
     }
 };
 
@@ -100,17 +100,17 @@ class Solution {
         if (sum % 2 != 0) return false;
 
         const int N = nums.size();
-        const int T = sum / 2;
-        bool dp[N + 1][T + 1];
+        const int W = sum / 2;
+        bool dp[N + 1][W + 1];
         // if (target < 0 || idx == nums.size()) return false;
         for (int i = 0; i < N + 1; ++i)
-            for (int j = 0; j < T + 1; ++j) dp[i][j] = false;
+            for (int j = 0; j < W + 1; ++j) dp[i][j] = false;
 
         // if (target == 0) return true;
         for (int i = 0; i < N + 1; ++i) dp[i][0] = true;
 
         for (int i = N - 1; i >= 0; --i) {
-            for (int j = 1; j < T + 1; ++j) {
+            for (int j = 1; j < W + 1; ++j) {
                 if (j >= nums[i]) {  // whehter choose nums[idx] or not
                     dp[i][j] = dp[i + 1][j] || dp[i + 1][j - nums[i]];
                 } else {
@@ -119,7 +119,7 @@ class Solution {
             }
         }
 
-        return dp[0][T];
+        return dp[0][W];
     }
 };
 
@@ -136,9 +136,9 @@ class Solution {
         if (sum % 2 != 0) return false;
 
         N = nums.size();
-        int T = sum / 2;
-        vector<vector<int>> memo(N + 1, vector<int>(T + 1, -1));
-        return dp(memo, nums, 0, T);
+        int W = sum / 2;
+        vector<vector<int>> memo(N + 1, vector<int>(W + 1, -1));
+        return dp(memo, nums, 0, W);
     }
 
    private:
