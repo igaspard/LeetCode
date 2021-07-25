@@ -1,4 +1,24 @@
 class Solution {
+public:
+    int minMeetingRooms(vector<vector<int>>& intervals) {
+        map<int, int> m;
+        for (auto interval : intervals) {
+            ++m[interval[0]];
+            --m[interval[1]];
+        }
+        
+        int ans = 0, rooms = 0;
+        for (auto it : m) 
+            ans = max(ans, rooms += it.second);
+        
+        return ans;
+    }
+};
+
+// Runtime: 16 ms, faster than 83.60% of C++ online submissions for Meeting Rooms II.
+// Memory Usage: 14 MB, less than 14.41% of C++ online submissions for Meeting Rooms II.
+
+class Solution {
    public:
     struct endCompare {
         bool operator()(const vector<int> &A, vector<int> &B) { return A[1] > B[1]; }
