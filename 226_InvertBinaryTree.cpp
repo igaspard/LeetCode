@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode id=226 lang=cpp
- *
- * [226] Invert Binary Tree
- */
-
-// @lc code=start
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -20,6 +13,22 @@ class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
         if (root == nullptr) return nullptr;
+        
+        invertTree(root->left);
+        invertTree(root->right);
+        
+        TreeNode* tmp = root->left;
+        root->left = root->right;
+        root->right = tmp;
+        
+        return root;
+    }
+};
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if (root == nullptr) return nullptr;
 
         TreeNode *tmp = root->left;
         root->left = root->right;
@@ -31,6 +40,8 @@ public:
         return root;
     }
 };
-// @lc code=end
 
-// Preorder
+// Preorder, postorder
+// tree, recursive 
+// Runtime: 4 ms, faster than 52.68% of C++ online submissions for Invert Binary Tree.
+// Memory Usage: 9.8 MB, less than 5.64% of C++ online submissions for Invert Binary Tree.

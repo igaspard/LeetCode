@@ -11,25 +11,24 @@
  */
 class Solution {
    public:
-    int maxPathSum(TreeNode *root) {
-        int ans = numeric_limits<int>::min();
-        dfs(root, ans);
-
+    int ans = INT_MIN;
+    int maxPathSum(TreeNode* root) {
+        oneSideMax(root);
         return ans;
     }
 
-    int dfs(TreeNode *root, int &ans) {
+   private:
+    int oneSideMax(TreeNode* root) {
         if (root == nullptr) return 0;
 
-        int l = max(0, dfs(root->left, ans));
-        int r = max(0, dfs(root->right, ans));
-        int sum = l + r + root->val;
-        ans = max(ans, sum);
+        int left = max(0, oneSideMax(root->left));
+        int right = max(0, oneSideMax(root->right));
 
-        return max(l, r) + root->val;
+        ans = max(ans, left + right + root->val);
+        return max(left, right) + root->val;
     }
 };
 
-// DFS
+// DFS, postorder
 // Runtime: 24 ms, faster than 99.94% of C++ online submissions for Binary Tree Maximum Path Sum.
 // Memory Usage: 28.9 MB, less than 12.06% of C++ online submissions for Binary Tree Maximum Path Sum.

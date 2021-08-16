@@ -10,75 +10,54 @@
  * };
  */
 class Solution {
-public:
+   public:
+    vector<vector<int>> ans;
     vector<vector<int>> levelOrder(TreeNode* root) {
-        if (root == nullptr)
-            return {};
-        vector<vector<int>> ans;
+        if (root == nullptr) return ans;
+        dfs(root, 0);
+        return ans;
+    }
+
+   private:
+    void dfs(TreeNode* node, int level) {
+        if (ans.size() == level) ans.push_back({});
+        ans[level].emplace_back(node->val);
+
+        if (node->left != nullptr) dfs(node->left, level + 1);
+        if (node->right != nullptr) dfs(node->right, level + 1);
+    }
+};
+
+// DFS
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Binary Tree Level Order Traversal.
+// Memory Usage: 13.7 MB, less than 6.90% of C++ online submissions for Binary Tree Level Order Traversal.
+
+class Solution {
+   public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if (root == nullptr) return {};
         queue<TreeNode*> q;
         q.push(root);
-        
-        while(!q.empty()) {
-            int level_size = q.size();
-            vector<int> level;
-            for (int i = 0; i < level_size; ++i) {
-                TreeNode *tmp = q.front();
+
+        vector<vector<int>> ans;
+        vector<int> level;
+        while (!q.empty()) {
+            auto N = q.size();
+            level.clear();
+            for (int i = 0; i < N; ++i) {
+                auto cur = q.front();
                 q.pop();
-                level.emplace_back(tmp->val);
-                if(tmp->left != nullptr)
-                    q.push(tmp->left);
-                if(tmp->right != nullptr)
-                    q.push(tmp->right);        
+                level.emplace_back(cur->val);
+                if (cur->left != nullptr) q.push(cur->left);
+                if (cur->right != nullptr) q.push(cur->right);
             }
-            
             ans.emplace_back(level);
         }
-        
+
         return ans;
     }
 };
 
 // BFS
-// Time complexity: O(N)
-// Space complexity: O(N)
-// Runtime: 8 ms, faster than 49.79% of C++ online submissions for Binary Tree Level Order Traversal.
-// Memory Usage: 12.6 MB, less than 72.56% of C++ online submissions for Binary Tree Level Order Traversal.
-
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> out;
-        if (root == NULL)
-            return out;
-
-        queue<TreeNode*> q;
-        q.push(root);
-        q.push(NULL); // mark for level
-        vector<int> ivec;
-        while(!q.empty()) {
-            TreeNode *cur = q.front();
-            q.pop();
-            if (cur == NULL) {
-                out.push_back(ivec);
-                ivec.resize(0);
-                if (q.size() > 0)
-                    q.push(NULL);
-            }
-            else {
-                ivec.push_back(cur->val);
-                if (cur->left) q.push(cur->left);
-                if (cur->right) q.push(cur->right);
-            }
-        }
-        return out;
-    }
-};
+// Runtime: 8 ms, faster than 36.33% of C++ online submissions for Binary Tree Level Order Traversal.
+// Memory Usage: 12.5 MB, less than 83.12% of C++ online submissions for Binary Tree Level Order Traversal.

@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode id=114 lang=cpp
- *
- * [114] Flatten Binary Tree to Linked List
- */
-
-// @lc code=start
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -37,5 +30,9 @@ public:
         target->right = right;
     }
 };
-// @lc code=end
 
+// recursive
+// 1. flatten left & right
+// 2. since we need pre-order travers, connect root's right to the left, and then connect the original right to the end of left
+// Runtime: 8 ms, faster than 46.68% of C++ online submissions for Flatten Binary Tree to Linked List.
+// Memory Usage: 12.7 MB, less than 35.71% of C++ online submissions for Flatten Binary Tree to Linked List.
