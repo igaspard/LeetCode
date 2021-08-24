@@ -11,7 +11,7 @@ class Solution {
             auto it = lower_bound(top.begin(), top.begin() + ans, poker);
             // if not found, create a new piles
             if (it == top.begin() + ans) ++ans;
-            
+
             *it = poker;
         }
 
@@ -33,11 +33,9 @@ class Solution {
         vector<int> dp(N, 1);
 
         // state transfer
-        for (int i = 1; i < N; ++i) {
-            for (int j = 0; j < i; ++j) {
+        for (int i = 1; i < N; ++i)
+            for (int j = 0; j < i; ++j)
                 if (nums[j] < nums[i]) dp[i] = max(dp[i], dp[j] + 1);
-            }
-        }
 
         // return max in the dp[i]
         return *max_element(dp.begin(), dp.end());
