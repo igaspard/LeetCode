@@ -5,9 +5,7 @@ class Solution {
         vector<int> top(N, 0);
 
         int ans = 0;
-        for (int i = 0; i < N; ++i) {
-            int poker = nums[i];
-
+        for (auto poker : nums) {
             auto it = lower_bound(top.begin(), top.begin() + ans, poker);
             // if not found, create a new piles
             if (it == top.begin() + ans) ++ans;
@@ -25,6 +23,34 @@ class Solution {
 // Runtime: 4 ms, faster than 99.12% of C++ online submissions for Longest Increasing Subsequence.
 // Memory Usage: 10.6 MB, less than 13.68% of C++ online submissions for Longest Increasing Subsequence.
 
+class Solution {
+   public:
+    int lengthOfLIS(vector<int>& nums) {
+        const int N = nums.size();
+        vector<int> top;
+
+        int ans = 0;
+        for (auto num : nums) {
+            if (top.empty() || num > top.back()) {
+                top.emplace_back(num);
+            } else {
+                auto it = lower_bound(top.begin(), top.end(), num);
+                if (it == top.end())
+                    top.emplace_back(num);
+                else
+                    *it = num;
+            }
+        }
+
+        return top.size();
+    }
+};
+
+// Use Solitaire to find the solution
+// binary search
+// time complexity: O(NlogN)
+// Runtime: 8 ms, faster than 91.47% of C++ online submissions for Longest Increasing Subsequence.
+// Memory Usage: 10.4 MB, less than 61.10% of C++ online submissions for Longest Increasing Subsequence.
 class Solution {
    public:
     int lengthOfLIS(vector<int>& nums) {
