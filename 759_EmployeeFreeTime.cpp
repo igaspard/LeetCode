@@ -41,5 +41,5 @@ class Solution {
     }
 };
 
-Runtime: 32 ms, faster than 100.00% of C++ online submissions for Employee Free Time.
-Memory Usage: 11.4 MB, less than 5.93% of C++ online submissions for Employee Free Time.
+// Runtime: 32 ms, faster than 100.00% of C++ online submissions for Employee Free Time.
+// Memory Usage: 11.4 MB, less than 5.93% of C++ online submissions for Employee Free Time.

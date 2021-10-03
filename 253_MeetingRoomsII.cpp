@@ -31,7 +31,7 @@ class Solution {
              [](const vector<int> &a, vector<int> &b) { return a[0] < b[0]; });
 
         int minRooms = 0;
-        priority_queue<vector<int>, vector<vector<int>>, endCompare> minHeap;
+        priority_queue<vector<int>, vector<vector<int>>> maxHeap;
         for (auto interval : intervals) {
             while (!minHeap.empty() && interval[0] >= minHeap.top()[1]) minHeap.pop();
 
