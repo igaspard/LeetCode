@@ -1,10 +1,8 @@
 class Solution {
    public:
     int maxSubArray(vector<int>& nums) {
-        const int N = nums.size();
         int pre = nums[0], ans = nums[0];
-
-        for (int i = 1; i < N; ++i) {
+        for (int i = 1; i < nums.size(); ++i) {
             int cur = max(nums[i], pre + nums[i]);
             ans = max(ans, cur);
             pre = cur;

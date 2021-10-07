@@ -1,5 +1,45 @@
 class Solution {
    public:
+    const vector<pair<int, int>> directs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    bool exist(vector<vector<char>>& board, string word) {
+        M = board.size();
+        N = board[0].size();
+
+        for (int j = 0; j < M; ++j) {
+            for (int i = 0; i < N; ++i) {
+                if (board[j][i] == word[0]) {
+                    if (dfs(board, word, 0, j, i)) return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+   private:
+    int M, N;
+
+    bool dfs(vector<vector<char>>& board, string s, int i, int y, int x) {
+        if (y < 0 || y >= M || x < 0 || x >= N || board[y][x] != s[i]) return false;
+        if (i == s.length() - 1) return true;
+
+        char tmp = board[y][x];
+        board[y][x] = '0';
+        bool found = false;
+        for (auto d : directs) {
+            found = dfs(board, s, i + 1, y + d.first, x + d.second);
+            if (found) break;
+        }
+        board[y][x] = tmp;
+
+        return found;
+    }
+};
+
+// Use board as visited instead of additional visited array
+
+class Solution {
+   public:
     const vector<pair<int, int>> directs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     bool exist(vector<vector<char>>& board, string word) {
         M = board.size();
