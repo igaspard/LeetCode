@@ -1,4 +1,19 @@
 class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {        
+        int max_end_here = 0, max_so_far = INT_MIN;
+        for (auto n : nums) {
+            max_end_here = max(max_end_here + n, n);
+            max_so_far = max(max_so_far, max_end_here);
+        }
+        
+        return max_so_far;
+    }
+};
+
+// Kadane’s Algorithm
+
+class Solution {
    public:
     int maxSubArray(vector<int>& nums) {
         int pre = nums[0], ans = nums[0];
