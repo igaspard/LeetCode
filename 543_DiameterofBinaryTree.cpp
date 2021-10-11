@@ -22,14 +22,15 @@ class Solution {
 
         int left_height = dfs(root->left, ans);
         int right_height = dfs(root->right, ans);
-
-        int cur_diameter = left_height + right_height;
-        ans = max(ans, cur_diameter);
+        ans = max(ans, left_height + right_height);
 
         return max(left_height, right_height) + 1;
     }
 };
 
 // DFS
+// tree travers the max tree height, 
+// During the travers, diameter is equal to the left tree height + right tree height
+// record the max one as the answer
 // Runtime: 12 ms, faster than 88.98% of C++ online submissions for Diameter of Binary Tree.
 // Memory Usage: 21 MB, less than 16.74% of C++ online submissions for Diameter of Binary Tree.

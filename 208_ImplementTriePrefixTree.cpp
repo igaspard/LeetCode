@@ -1,49 +1,47 @@
+class TrieNode {
+   public:
+    TrieNode() : children(26), isEnd(false) {}
+
+    vector<TrieNode*> children;
+    bool isEnd;
+};
+
 class Trie {
    public:
     Trie() { root = new TrieNode(); }
 
     void insert(string word) {
-        TrieNode* cur = root;
+        auto cur = root;
         for (auto ch : word) {
             ch -= 'a';
             if (cur->children[ch] == nullptr) cur->children[ch] = new TrieNode();
             cur = cur->children[ch];
         }
+
         cur->isEnd = true;
     }
 
     bool search(string word) {
-        TrieNode* cur = root;
-        for (auto ch : word) {
-            ch -= 'a';
-            if (cur->children[ch] == nullptr) return false;
-            cur = cur->children[ch];
-        }
-
-        return cur->isEnd;
+        auto cur = searchPrefix(word);
+        return cur != nullptr && cur->isEnd;
     }
 
-    bool startsWith(string prefix) {
-        TrieNode* cur = root;
-        for (auto ch : prefix) {
-            ch -= 'a';
-            if (cur->children[ch] == nullptr) return false;
-            cur = cur->children[ch];
-        }
-
-        return true;
-    }
+    bool startsWith(string prefix) { return searchPrefix(prefix) != nullptr; }
 
    private:
-    struct TrieNode {
-        struct TrieNode* children[26];
-        bool isEnd;
-    };
     TrieNode* root;
-};
 
-// Runtime: 72 ms, faster than 51.29% of C++ online submissions for Implement Trie (Prefix Tree).
-// Memory Usage: 45.1 MB, less than 46.37% of C++ online submissions for Implement Trie (Prefix Tree).
+    TrieNode* searchPrefix(string prefix) {
+        auto cur = root;
+        for (auto ch : prefix) {
+            ch -= 'a';
+            if (cur->children[ch] == nullptr) return nullptr;
+            cur = cur->children[ch];
+        }
+
+        return cur;
+    }
+};
 
 /**
  * Your Trie object will be instantiated and called as such:
@@ -52,6 +50,17 @@ class Trie {
  * bool param_2 = obj->search(word);
  * bool param_3 = obj->startsWith(prefix);
  */
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
+
+// Runtime: 60 ms, faster than 71.57% of C++ online submissions for Implement Trie (Prefix Tree).
+// Memory Usage: 48.3 MB, less than 19.94% of C++ online submissions for Implement Trie (Prefix Tree).
 
 class Trie {
    public:
