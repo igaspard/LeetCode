@@ -1,36 +1,17 @@
 class Solution {
 public:
     int numSquares(int n) {
-        vector<int> square_vector;
-
-        for (int i = 1; i <= (int) sqrt(n); i++) 
-            square_vector.emplace_back(i*i);
+        vector<int> dp(n + 1, INT_MAX);
+        dp[0] = 0;
         
-        vector<int> dp(n+1, 0);
-        dp[0] = dp[1] = 1;
+        for (int i = 1; i < dp.size(); ++i) 
+            for (int x = 1; x * x <= i; ++x)
+                dp[i] = min(dp[i], dp[i-x*x] + 1);
         
-        for(int i = 2; i < dp.size(); i++) {
-            int ans = n;
-            for (int j = 0; j < square_vector.size(); j++) {
-                if (i > square_vector[j]) {
-                    ans = min(ans, dp[i-square_vector[j]]+1);
-                }
-                else if (i == square_vector[j]) {
-                    ans = 1;
-                    break;
-                }
-                else
-                    break;
-            }
-            dp[i] = ans;
-        }
-        
-        return dp.back();
+        return dp[n];
     }
 };
 
 // DP
-// Time complexity: O(N * square root of N)
-// Scape complexity: O(N)
-Runtime: 276 ms, faster than 38.14% of C++ online submissions for Perfect Squares.
-Memory Usage: 9.6 MB, less than 21.09% of C++ online submissions for Perfect Squares.
+// Runtime: 164 ms, faster than 59.21% of C++ online submissions for Perfect Squares.
+// Memory Usage: 9.1 MB, less than 41.61% of C++ online submissions for Perfect Squares.

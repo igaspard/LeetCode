@@ -1,3 +1,64 @@
+class TrieNode {
+   public:
+    vector<TrieNode*> children;
+    bool isEnd;
+
+    TrieNode() : children(26), isEnd(false) {}
+
+    ~TrieNode() {
+        for (auto child : children) delete child;
+    }
+};
+
+class Solution {
+   public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        root = new TrieNode();
+        // build trie prefix tree
+        for (auto word : wordDict) {
+            auto cur = root;
+            for (auto ch : word) {
+                ch -= 'a';
+                if (cur->children[ch] == nullptr) cur->children[ch] = new TrieNode();
+                cur = cur->children[ch];
+            }
+            cur->isEnd = true;
+        }
+
+        N = s.length();
+        vector<bool> visited(N, false);
+
+        return dfs(s, 0, visited);
+    }
+
+   private:
+    int N;
+    TrieNode* root;
+
+    bool dfs(string s, int idx, vector<bool>& visited) {
+        if (idx == N) return true;
+        if (visited[idx] == true) return false;
+
+        visited[idx] = true;
+
+        auto cur = root;
+        while (idx < N && cur->children[s[idx] - 'a'] != nullptr) {
+            cur = cur->children[s[idx] - 'a'];
+            bool ret = false;
+            if (cur->isEnd) {
+                ret = dfs(s, idx + 1, visited);
+                if (ret == true) return true;
+            }
+            ++idx;
+        }
+        return false;
+    }
+};
+
+// trie + dfs travers trie tree
+// Runtime: 3 ms, faster than 94.20% of C++ online submissions for Word Break.
+// Memory Usage: 11.7 MB, less than 57.80% of C++ online submissions for Word Break.
+
 class Solution {
    public:
     bool wordBreak(string s, vector<string>& wordDict) {
