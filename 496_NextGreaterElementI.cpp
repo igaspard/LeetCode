@@ -1,10 +1,24 @@
-/*
- * @lc app=leetcode id=496 lang=cpp
- *
- * [496] Next Greater Element I
- */
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> hash;
+        stack<int> s;
+        for (int i = nums2.size() - 1; i >= 0; --i) {
+            while (!s.empty() && s.top() <= nums2[i]) s.pop();
+            hash[nums2[i]] = s.empty() ? -1 : s.top();
+            s.push(nums2[i]);
+        }
+        
+        vector<int> ans;
+        for (auto n : nums1) ans.emplace_back(hash[n]);
+        return ans;
+    }
+};
 
-// @lc code=start
+// Monotonic Stack + Hash Table
+// Runtime: 5 ms, faster than 65.75% of C++ online submissions for Next Greater Element I.
+// Memory Usage: 9 MB, less than 14.53% of C++ online submissions for Next Greater Element I.
+
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
@@ -26,7 +40,6 @@ public:
     }
 
 };
-// @lc code=end
 
 // Monotonic Stack + Hash Table
 // Time complexity: O(m+n), scan each vector once
