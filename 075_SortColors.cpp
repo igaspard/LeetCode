@@ -1,21 +1,34 @@
 class Solution {
-public:
+   public:
     void sortColors(vector<int>& nums) {
-        int low = 0, high = nums.size() - 1;
-        for(int i = 0; i <= high;) {
-            if (nums[i] == 0) 
-                swap(nums, i++, low++);
-            else if (nums[i] == 1)
-                ++i;
-            else
-                 swap(nums, i, high--);
+        unordered_map<int, int> freq;
+        for (auto n : nums) ++freq[n];
+
+        int idx = 0;
+        for (int i = 0; i < 3; ++i) {
+            int cnt = freq[i];
+            while (cnt-- > 0) nums[idx++] = i;
         }
     }
-private:
-    void swap(vector<int> &nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+};
+
+// counting sort
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Sort Colors.
+// Memory Usage: 8.1 MB, less than 91.24% of C++ online submissions for Sort Colors.
+
+class Solution {
+   public:
+    void sortColors(vector<int>& nums) {
+        int low = 0, high = nums.size() - 1, mid = 0;
+
+        while (mid <= high) {
+            if (nums[mid] == 0)
+                swap(nums[mid++], nums[low++]);
+            else if (nums[mid] == 2)
+                swap(nums[mid], nums[high--]);
+            else
+                ++mid;
+        }
     }
 };
 
