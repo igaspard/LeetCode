@@ -38,6 +38,23 @@ class Solution {
 
         return rotated;
     }
+
+    vector<vector<int>> rotate180(vector<vector<int>>& mat) {
+        vector<vector<int>> rotated(mat);
+
+        reverse(rotated.begin(), rotated.end());
+        for (auto& vi : rotated) reverse(vi.begin(), vi.end());
+        return rotated;
+    }
+
+    vector<vector<int>> rotate270(vector<vector<int>>& mat) {
+        vector<vector<int>> rotated(mat);
+
+        for (auto& vi : rotated) reverse(vi.begin(), vi.end());
+        for (int j = 0; j < N - 1; ++j)
+            for (int i = j + 1; i < N; ++i) swap(rotated[j][i], rotated[i][j]);
+        return rotated;
+    }
 };
 
 // Runtime: 8 ms, faster than 20.00% of C++ online submissions for Determine Whether Matrix Can Be Obtained By

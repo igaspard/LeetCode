@@ -5,7 +5,6 @@ public:
         dp[0] = 0;
         for (int i = 1; i < amount + 1; ++i) dp[i] = amount + 1;
         
-        int ans = INT_MAX;
         for (int i = 1; i < amount + 1; ++i) {
             for (auto coin : coins) 
                 if (i >= coin) dp[i] = min(dp[i], dp[i-coin]+1);

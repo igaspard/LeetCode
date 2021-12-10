@@ -1,3 +1,32 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return helper(root, nullptr, nullptr);
+    }
+private:
+    bool helper(TreeNode* cur, TreeNode* min, TreeNode* max) {
+        if (cur == nullptr) return true;
+        if (min != nullptr && cur->val <= min->val) return false;
+        if (max != nullptr && cur->val >= max->val) return false;
+        return helper(cur->left, min, cur) && helper(cur->right, cur, max);
+    }
+};
+
+// recursive
+// Runtime: 12 ms, faster than 66.50% of C++ online submissions for Validate Binary Search Tree.
+// Memory Usage: 21.7 MB, less than 31.02% of C++ online submissions for Validate Binary Search Tree.
+
 #include <iostream>
 #include <vector>
 using namespace std;

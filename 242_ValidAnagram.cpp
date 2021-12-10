@@ -1,23 +1,39 @@
 class Solution {
-public:
+   public:
     bool isAnagram(string s, string t) {
         if (s.length() != t.length()) return false;
-        
-        int matched = 0;
-        unordered_map<char, int> hash;
-        for (auto chr : s) hash[chr]++;
-        
-        for (auto chr : t) {
-            if (hash.find(chr) != hash.end()) {
-                hash[chr]--;
-                if (hash[chr] == 0) matched++;
-            }
+
+        int freq[26] = {0};
+        for (int i = 0; i < s.length(); ++i) {
+            ++freq[s[i] - 'a'];
+            --freq[t[i] - 'a'];
         }
-        
-        return matched == hash.size() ? true : false;
+
+        for (int i = 0; i < 26; ++i)
+            if (freq[i] != 0) return false;
+
+        return true;
     }
 };
 
-// Hash Table
-// Runtime: 28 ms, faster than 54.09% of C++ online submissions for Valid Anagram.
-// Memory Usage: 7.7 MB, less than 7.83% of C++ online submissions for Valid Anagram.
+// Hash
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Valid Anagram.
+// Memory Usage: 7.4 MB, less than 43.76% of C++ online submissions for Valid Anagram.
+class Solution {
+   public:
+    bool isAnagram(string s, string t) {
+        unordered_map<char, int> freq;
+        for (auto ch : s) ++freq[ch];
+
+        for (auto ch : t) {
+            --freq[ch];
+            if (!freq[ch]) freq.erase(ch);
+        }
+
+        return freq.size() == 0 ? true : false;
+    }
+};
+
+// Hash
+// Runtime: 12 ms, faster than 52.48% of C++ online submissions for Valid Anagram.
+// Memory Usage: 7.5 MB, less than 7.35% of C++ online submissions for Valid Anagram.
